@@ -35,7 +35,14 @@ class User(BaseModel):
 
 
 if __name__ == "__main__":
-    Potato = Ingredient(name="Potato", lifetime=30)
     ingredientsDb.create_tables([Ingredient])
-    Potato.save()
+
+    ingredients = [["name", 30],["carrots", 20]]
+
+    for i in ingredients:
+        Ingredient(name=i[0], lifetime=i[1]).save()
+
+    # Potato = Ingredient(name="Potato", lifetime=30)
+    # Potato.save()
+
     [print(i.name) for i in Ingredient.select()]
