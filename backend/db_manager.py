@@ -37,7 +37,7 @@ class User(BaseModel):
 if __name__ == "__main__":
     ingredientsDb.create_tables([Ingredient])
 
-    ingredients = [["name", 30],["carrots", 20]]
+    ingredients = [["name", 30],["carrots", 20],["carrots", 20]]
 
     for i in ingredients:
         Ingredient(name=i[0], lifetime=i[1]).save()
