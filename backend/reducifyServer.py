@@ -43,4 +43,4 @@ def postTest():
 @app.route('/fridge')
 @jwt_required()
 def user_home():
-    return '\n Your fridge contains: %s \n' % current_identity.fridge
+    current_identity.fridge
