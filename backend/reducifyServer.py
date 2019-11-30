@@ -3,12 +3,19 @@ from flask_jwt import JWT, jwt_required, current_identity
 
 from peewee import *
 from db_manager import User
+import datetime
 
 app = Flask(__name__)
-
+app.config['SECRET_KEY'] = 'lit_haxx3rs'
+app.config['JWT_EXPIRATION_DELTA'] = datetime.timedelta(seconds=60 * 60) #Have the token last one hour
+app.debug=True
 
 #Authenticate Users when they login
 def authenticate(username, password):
+
+    print("Attempted to connect", username," ",password)
+
+
     user = User.get(User.username == username)
     if user.password.encode('utf-8') == password.encode('utf-8'):
         return user
@@ -21,15 +28,19 @@ def identity(payload):
 #Tell jwt which functions to use
 jwt = JWT(app, authenticate, identity)
 
-
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    return "Hello world"
+
+@app.route('/postTest',methods=['GET', 'POST'])
+def postTest():
+     print(request.data)
+     return request.data
 
 
 
 #Should be protected
-@app.route('/protected')
+@app.route('/fridge')
 @jwt_required()
-def protected():
-    return '%s' % current_identity
+def user_home():
+    return '\n Your fridge contains: %s \n' % current_identity.fridge

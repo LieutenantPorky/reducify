@@ -1,5 +1,7 @@
 from peewee import *
 from playhouse.sqlite_ext import *
+import datetime
+import json
 
 ingredientsDb = SqliteDatabase('ingredients.db')
 
@@ -17,32 +19,26 @@ class BaseModel(Model):
     class Meta:
         database = db
 
+# Create a test JSON to contain a theoretical fridge
+testFridge = {"apple":[[1,datetime.datetime(2020, 5, 17).__str__()]]}
+
 class User(BaseModel):
-    name = CharField(unique=True)
+    username = CharField(unique=True)
     password = CharField()
     id = AutoField()
-    fridge = JSONField()
-
-
-
-
-
-
-
-
+    fridge = JSONField(default=json.dumps(testFridge))
 
 
 
 
 if __name__ == "__main__":
-    ingredientsDb.create_tables([Ingredient])
+    db.create_tables([User])
 
-    ingredients = [["name", 30],["carrots", 20]]
+
+
+    ingredients = [["Feynman", "pathIntegral"], ["Einstein", "mc2"]]
 
     for i in ingredients:
-        Ingredient(name=i[0], lifetime=i[1]).save()
+        User(username=i[0], password=i[1]).save()
 
-    # Potato = Ingredient(name="Potato", lifetime=30)
-    # Potato.save()
-
-    [print(i.name) for i in Ingredient.select()]
+    [print(i.username, i.password, i.id, i.fridge) for i in User.select()]
