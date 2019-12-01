@@ -2,8 +2,10 @@ from flask import Flask, jsonify, request
 from flask_jwt import JWT, jwt_required, current_identity
 
 from peewee import *
-from db_manager import User
+from db_manager import User, getShared
 import datetime
+from ReceiptParse import receiptToIngredients
+from Recipes import getRecipes
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'lit_haxx3rs'
@@ -39,8 +41,33 @@ def postTest():
 
 
 
-#Should be protected
+# Should be protected
+# When receives a GET request, returns JSON array of what's in the fridge
 @app.route('/fridge')
 @jwt_required()
 def user_home():
     return current_identity.getFridge()
+
+@app.route('/receipt', methods=['POST'])
+@jwt_required()
+def updateWithReceipt():
+    image = request.files['image']
+    items = receiptToIngredients(image)
+    current_identity.updateFridge(items)
+    return jsonify({"data":items})
+
+
+@app.route('/recipes')
+@jwt_required()
+def serveRecipes():
+    return jsonify({"data":getRecipes(current_identity.foodList())})
+
+@app.route('/recipes/consume', methods=['POST'])
+@jwt_required()
+def consumeRecipe():
+    usedRecipe = request.form.get("recipe")
+
+@app.route('/shared')
+@jwt_required()
+def serveShared():
+    return jsonify({"data":getShared(7)})
