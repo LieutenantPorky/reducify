@@ -104,7 +104,7 @@ if __name__ == "__main__":
     testUser = User.get(username="Feynman")
 
     print (testUser.getFridge())
-    #testUser.updateFridge(["onions"])
-    testUser.removeThroughRecipe("bread Soup")
+    testUser.updateFridge(["bread", "eggs", "milk"])
+    #testUser.removeThroughRecipe("bread Soup")
     print (testUser.getFridge())
     #print (getShared(100))
