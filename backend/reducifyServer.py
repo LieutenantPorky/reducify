@@ -51,11 +51,12 @@ def user_home():
 @app.route('/receipt', methods=['POST'])
 @jwt_required()
 def updateWithReceipt():
-    imageStream = request.form.get("image")
-    print(imageStream[:10])
-    items = receiptToIngredients(base64.decodestring(imageStream))
-    current_identity.updateFridge(items)
-    return jsonify({"data":items})
+    print(request.data)
+    # imageStream = request.form.get("image")
+    # print(imageStream[:10])
+    # items = receiptToIngredients(base64.decodestring(imageStream))
+    # current_identity.updateFridge(items)
+    # return jsonify({"data":items})
 
 
 @app.route('/recipes')
