@@ -18,7 +18,7 @@ allIngredients = [ingredient.name for ingredient in Ingredient.select()]
 def receiptToIngredients(imageStream):
     # Open the image using PIL
 
-    pilImage = Image.open(StringIO(imageStream.read()))
+    pilImage = Image.open(StringIO(imageStream))
 
     image = np.array(pilImage)
     print(image.shape())
