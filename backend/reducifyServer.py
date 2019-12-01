@@ -52,11 +52,14 @@ def user_home():
 @app.route('/receipt', methods=['POST'])
 @jwt_required()
 def updateWithReceipt():
-    out = json.loads(str(request.data))["image"]
 
-    items = receiptToIngredients(base64.decodestring(out))
-    current_identity.updateFridge(items)
-    return jsonify({"data":items})
+    out = request.json
+    print(out)
+    # out = json.loads(str(request.data))["image"]
+    #
+    # items = receiptToIngredients(base64.decodestring(out))
+    # current_identity.updateFridge(items)
+    # return jsonify({"data":items})
 
 
 @app.route('/recipes')
