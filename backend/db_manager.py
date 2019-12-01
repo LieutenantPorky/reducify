@@ -90,16 +90,16 @@ def getShared(limit=3):
 
 
 if __name__ == "__main__":
-    # db.create_tables([User])
-    #
-    # ingredients = [["Feynman", "pathIntegral"], ["Einstein", "mc2"]]
-    #
-    # for i in ingredients:
-    #     User(username=i[0], password=i[1]).save()
-    #
-    # [print(i.username, i.password, i.id, i.fridge) for i in User.select()]
-    #
-    # [print(i.name, " ", str(i.lifetime)) for i in Ingredient.select()]
+    db.create_tables([User])
+
+    ingredients = [["Feynman", "pathIntegral"], ["Einstein", "mc2"]]
+
+    for i in ingredients:
+        User(username=i[0], password=i[1]).save()
+
+    [print(i.username, i.password, i.id, i.fridge) for i in User.select()]
+
+    [print(i.name, " ", str(i.lifetime)) for i in Ingredient.select()]
 
     testUser = User.get(username="Einstein")
 
