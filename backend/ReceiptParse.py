@@ -7,6 +7,7 @@ from peewee import *
 from db_manager import Ingredient
 from io import BytesIO
 import numpy as np
+import base64
 
 path="test_receipt.jpg"
 
