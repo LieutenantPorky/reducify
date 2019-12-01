@@ -6,6 +6,7 @@ from db_manager import User, getShared
 import datetime
 from ReceiptParse import receiptToIngredients
 from Recipes import getRecipes
+import base64
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'lit_haxx3rs'
