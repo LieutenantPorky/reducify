@@ -21,7 +21,7 @@ def receiptToIngredients(imageStream):
     pilImage = Image.open(BytesIO(imageStream))
 
     image = np.array(pilImage)
-    print(image.shape)
+    #print(image.shape)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     #do some preprocessing
@@ -37,6 +37,7 @@ def receiptToIngredients(imageStream):
     wordList = re.sub ("[^\w]"," ",realNew).split()
     allIngredients #allIngredients refers to the database containing all ingredients that are used in recipes
     ingredients = [i for i in [filter(i,wordList,70) for i in allIngredients] if i] #ingredients in fridge
+    print(ingredients)
     return ingredients
 
 
