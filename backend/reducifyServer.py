@@ -6,6 +6,7 @@ from db_manager import User, getShared
 import datetime
 from ReceiptParse import receiptToIngredients
 from Recipes import getRecipes
+import json
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'lit_haxx3rs'
@@ -51,7 +52,7 @@ def user_home():
 @app.route('/receipt', methods=['POST'])
 @jwt_required()
 def updateWithReceipt():
-    print(request.data)
+    print(json.loads(request.data.encode('utf-8'))["image"])
     # imageStream = request.form.get("image")
     # print(imageStream[:10])
     # items = receiptToIngredients(base64.decodestring(imageStream))
