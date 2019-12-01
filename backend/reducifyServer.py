@@ -55,7 +55,7 @@ def updateWithReceipt():
 
     out = request.json
     print(out["image"])
-    items = receiptToIngredients(base64.decodestring(out["image"]))
+    items = receiptToIngredients(base64.b64decode(out["image"]))
     current_identity.updateFridge(items)
     return jsonify({"data":items})
 
