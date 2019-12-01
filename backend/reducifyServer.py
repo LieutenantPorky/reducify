@@ -6,7 +6,6 @@ from db_manager import User, getShared
 import datetime
 from ReceiptParse import receiptToIngredients
 from Recipes import getRecipes
-import json
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'lit_haxx3rs'
@@ -54,12 +53,10 @@ def user_home():
 def updateWithReceipt():
 
     out = request.json
-    print(out)
-    # out = json.loads(str(request.data))["image"]
-    #
-    # items = receiptToIngredients(base64.decodestring(out))
-    # current_identity.updateFridge(items)
-    # return jsonify({"data":items})
+    print(out["image"])
+    items = receiptToIngredients(base64.decodestring(out["image"]))
+    current_identity.updateFridge(items)
+    return jsonify({"data":items})
 
 
 @app.route('/recipes')
