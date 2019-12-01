@@ -28,6 +28,16 @@ class User(BaseModel):
     id = AutoField()
     fridge = JSONField(default=json.dumps(testFridge))
 
+    def getFridge(self):
+        fridge = json.loads(self.fridge)
+        output = []
+
+        for key, value in fridge.items():
+            for element in value:
+                output.append({"item":key, "number":element[0], "date":element[1]})
+
+        return json.dumps(output)
+
     def updateFridge(self, items):
 
         oldFridge = json.loads(self.fridge)
@@ -60,8 +70,8 @@ if __name__ == "__main__":
     #     User(username=i[0], password=i[1]).save()
     #
     # [print(i.username, i.password, i.id, i.fridge) for i in User.select()]
-
-    [print(i.name, " ", str(i.lifetime)) for i in Ingredient.select()]
+    #
+    # [print(i.name, " ", str(i.lifetime)) for i in Ingredient.select()]
 
     testUser = User.get(username="Feynman")
     print (json.loads(testUser.fridge))
@@ -69,4 +79,4 @@ if __name__ == "__main__":
     testUser.updateFridge(["carrots"])
 
 
-    print (json.loads(testUser.fridge))
+    print (testUser.getFridge())
