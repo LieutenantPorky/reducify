@@ -63,12 +63,13 @@ def updateWithReceipt():
 @app.route('/recipes')
 @jwt_required()
 def serveRecipes():
+    print("serving recipes \n\n\n\n\n")
     return jsonify({"data":getRecipes(current_identity.foodList())})
 
-@app.route('/recipes/consume', methods=['POST'])
-@jwt_required()
-def consumeRecipe():
-    usedRecipe = request.form.get("recipe")
+# @app.route('/recipes/consume', methods=['POST'])
+# @jwt_required()
+# def consumeRecipe():
+#     usedRecipe = request.form.get("recipe")
 
 @app.route('/shared')
 @jwt_required()

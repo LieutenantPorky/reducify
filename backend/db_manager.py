@@ -40,14 +40,22 @@ class User(BaseModel):
         return json.dumps({"data":output})
 
     def updateFridge(self, items):
-
+        print("updating fridge \n")
+        print(items)
         oldFridge = json.loads(self.fridge)
+        print(oldFridge)
         for item in items:
-            sell_by = str(datetime.date.today() + datetime.timedelta(days=Ingredient.get(name=item).lifetime))
+            print(item)
+            print('\n')
+            try:
+                sell_by = str(datetime.date.today() + datetime.timedelta(days=Ingredient.get(name=item).lifetime))
+            except:
+                sell_by = str(datetime.date.today() + datetime.timedelta(days=20))
             if not (item in oldFridge):
                 oldFridge[item]=[[1,sell_by]]
             else:
                 line = oldFridge[item]
+                print(line)
 
                 if len(line)>0 and line[-1][1]==sell_by:
                     line[-1][0] += 1
@@ -90,21 +98,21 @@ def getShared(limit=3):
 
 
 if __name__ == "__main__":
-    db.create_tables([User])
-
-    ingredients = [["Feynman", "pathIntegral"], ["Einstein", "mc2"]]
-
-    for i in ingredients:
-        User(username=i[0], password=i[1]).save()
-
-    [print(i.username, i.password, i.id, i.fridge) for i in User.select()]
-
-    [print(i.name, " ", str(i.lifetime)) for i in Ingredient.select()]
+    # db.create_tables([User])
+    #
+    # ingredients = [["Feynman", "pathIntegral"], ["Einstein", "mc2"]]
+    #
+    # for i in ingredients:
+    #     User(username=i[0], password=i[1]).save()
+    #
+    # [print(i.username, i.password, i.id, i.fridge) for i in User.select()]
+    #
+    # [print(i.name, " ", str(i.lifetime)) for i in Ingredient.select()]
 
     testUser = User.get(username="Einstein")
 
     print (testUser.getFridge())
-    testUser.updateFridge(["bread", "eggs", "milk"])
+    testUser.updateFridge(["chicken", "salad", "red onions", "cucumbers", "pommegranate", "salad", "avocado", "feta cheese"])
     #testUser.removeThroughRecipe("bread Soup")
     print (testUser.getFridge())
     #print (getShared(100))

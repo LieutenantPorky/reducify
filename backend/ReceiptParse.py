@@ -35,8 +35,8 @@ def receiptToIngredients(imageStream):
     realNew = newString.lower()
 
     wordList = re.sub ("[^\w]"," ",realNew).split()
-    allIngredients #allIngredients refers to the database containing all ingredients that are used in recipes
-    ingredients = [i for i in [filter(i,wordList,70) for i in allIngredients] if i] #ingredients in fridge
+    #allIngredients #allIngredients refers to the database containing all ingredients that are used in recipes
+    ingredients = [i for i in [filter(j,wordList,70) for j in allIngredients] if i] #ingredients in fridge
     print(ingredients)
     return ingredients
 

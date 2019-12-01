@@ -5,7 +5,7 @@ breadSoup = ["bread", "onions","frozen peas"] #salt, pepper, stock cube, oil
 
 cauliflowerSoup = ["onions", "garlic", "cauliflower", "kale", "bacon", "milk"] #stock cube, salt, pepper, oil
 
-chickenSalad = ["chicken", "salad", "red onions", "cucumber", "pommegranate", "salad", "avocado", "feta cheese"] # salt, pepper, oil/butter
+chickenSalad = ["chicken", "salad", "red onions", "cucumbers", "pommegranate", "salad", "avocado", "feta cheese"] # salt, pepper, oil/butter
 
 bananaPancakes = ["milk", "butter", "eggs", "bananas"] # flour, baking powder, salt
 
