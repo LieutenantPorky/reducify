@@ -36,7 +36,7 @@ class User(BaseModel):
             for element in value:
                 output.append({"item":key, "number":element[0], "date":element[1]})
 
-        return json.dumps(output)
+        return json.dumps({"data":output})
 
     def updateFridge(self, items):
 
