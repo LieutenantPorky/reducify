@@ -101,7 +101,7 @@ if __name__ == "__main__":
     #
     # [print(i.name, " ", str(i.lifetime)) for i in Ingredient.select()]
 
-    testUser = User.get(username="Feynman")
+    testUser = User.get(username="Einstein")
 
     print (testUser.getFridge())
     testUser.updateFridge(["bread", "eggs", "milk"])

@@ -5,6 +5,8 @@ from receipt_parse import filter
 import re
 from peewee import *
 from db_manager import Ingredient
+from io import BytesIO
+import numpy as np
 
 path="test_receipt.jpg"
 
@@ -12,9 +14,12 @@ allIngredients = [ingredient.name for ingredient in Ingredient.select()]
 
 
 
-def receiptToIngredients(image):
-    # Open the image
-    image = cv2.imread(path)
+def receiptToIngredients(imageStream):
+    # Open the image using PIL
+
+    pilImage = Image.open(BytesIO(imageStream.read()))
+
+    image = np.array(pilImage)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     #do some preprocessing
@@ -31,3 +36,7 @@ def receiptToIngredients(image):
     allIngredients #allIngredients refers to the database containing all ingredients that are used in recipes
     ingredients = [i for i in [filter(i,wordList,70) for i in allIngredients] if i] #ingredients in fridge
     return ingredients
+
+
+if __name__=="__main__":
+    print(receiptToIngredients(open(path, 'rb')))
