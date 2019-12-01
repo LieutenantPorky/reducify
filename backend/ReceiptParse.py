@@ -21,7 +21,7 @@ def receiptToIngredients(imageStream):
     pilImage = Image.open(BytesIO(imageStream))
 
     image = np.array(pilImage)
-    print(image.shape())
+    print(image.shape)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     #do some preprocessing
