@@ -5,7 +5,7 @@ from receipt_parse import filter
 import re
 from peewee import *
 from db_manager import Ingredient
-from io import BytesIO
+from io import StringIO
 import numpy as np
 import base64
 
@@ -18,7 +18,7 @@ allIngredients = [ingredient.name for ingredient in Ingredient.select()]
 def receiptToIngredients(imageStream):
     # Open the image using PIL
 
-    pilImage = Image.open(BytesIO(imageStream.read()))
+    pilImage = Image.open(StringIO(imageStream.read()))
 
     image = np.array(pilImage)
     print(image.shape())
