@@ -112,7 +112,14 @@ if __name__ == "__main__":
     testUser = User.get(username="Einstein")
 
     print (testUser.getFridge())
-    testUser.updateFridge(["chicken", "salad", "red onions", "cucumbers", "pommegranate", "salad", "avocado", "feta cheese"])
+    #testUser.updateFridge(["onions", "garlic", "cauliflower", "kale", "bacon", "milk"])
     #testUser.removeThroughRecipe("bread Soup")
     print (testUser.getFridge())
     #print (getShared(100))
+
+    for usr in User.select():
+        print("User: " + usr.username)
+        print("Password: " + usr.password)
+        print("id: " + str(usr.id))
+        print(usr.getFridge())
+        print("\n ####### \n")
