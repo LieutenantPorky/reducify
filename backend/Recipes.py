@@ -1,5 +1,5 @@
 
-potatoTortilla = ["potatoes", "eggs", "onions"] #salt, pepper
+potatoTortilla = ["potatoes", "egg", "onions"] #salt, pepper
 
 breadSoup = ["bread", "onions","frozen peas"] #salt, pepper, stock cube, oil
 
@@ -7,9 +7,9 @@ cauliflowerSoup = ["onions", "garlic", "cauliflower", "kale", "bacon", "milk"] #
 
 chickenSalad = ["chicken", "salad", "red onions", "cucumbers", "pommegranate", "salad", "avocado", "feta cheese"] # salt, pepper, oil/butter
 
-bananaPancakes = ["milk", "butter", "eggs", "bananas"] # flour, baking powder, salt
+bananaPancakes = ["milk", "butter", "egg", "bananas"] # flour, baking powder, salt
 
-frenchToast = ["bread", "eggs", "milk"] # oil, sugar, salt
+frenchToast = ["bread", "egg", "milk"] # oil, sugar, salt
 
 breadPizza = ["bread", "tomatoes", "cheese"] # pepper, herbs
 
@@ -36,5 +36,5 @@ def getRecipes(ingredients):
     return recipesOut
 
 if __name__=="__main__":
-    print(getRecipes(["milk", "butter", "eggs", "bananas", "milk", "butter", "bread", "bananas"]))
+    print(getRecipes(["milk", "butter", "egg", "bananas", "milk", "butter", "bread", "bananas"]))
     print(getIngredients("breadPizza"))

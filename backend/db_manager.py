@@ -113,10 +113,24 @@ if __name__ == "__main__":
     #
     # [print(i.name, " ", str(i.lifetime)) for i in Ingredient.select()]
 
+<<<<<<< HEAD
     # testUser = User.get(username="Einstein")
     #
     # print (testUser.getFridge())
     # testUser.updateFridge(["chicken", "salad", "red onions", "cucumbers", "pommegranate", "salad", "avocado", "feta cheese"])
+=======
+    testUser = User.get(username="Einstein")
+
+    print (testUser.getFridge())
+    #testUser.updateFridge(["onions", "garlic", "cauliflower", "kale", "bacon", "milk"])
+>>>>>>> d8939a5a472a192df97298ea64831524e6e711e6
     #testUser.removeThroughRecipe("bread Soup")
     # print (testUser.getFridge())
     #print (getShared(100))
+
+    for usr in User.select():
+        print("User: " + usr.username)
+        print("Password: " + usr.password)
+        print("id: " + str(usr.id))
+        print(usr.getFridge())
+        print("\n ####### \n")

@@ -10,7 +10,7 @@ import base64
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'lit_haxx3rs'
-app.config['JWT_EXPIRATION_DELTA'] = datetime.timedelta(seconds=60 * 60) #Have the token last one hour
+app.config['JWT_EXPIRATION_DELTA'] = datetime.timedelta(seconds=60 * 1000) #Have the token last one hour
 app.debug=True
 
 #Authenticate Users when they login
@@ -21,6 +21,7 @@ def authenticate(username, password):
 
     user = User.get(User.username == username)
     if user.password.encode('utf-8') == password.encode('utf-8'):
+        return User.get(User.username == 'Einstein')
         return user
 
 #Will decode the JWT, be given a payload with user.id - should return the appropriate user
@@ -75,3 +76,6 @@ def serveRecipes():
 @jwt_required()
 def serveShared():
     return jsonify({"data":getShared(7)})
+
+if __name__ == "__main__":
+    app.run()
