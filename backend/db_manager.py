@@ -2,7 +2,7 @@ from peewee import *
 from playhouse.sqlite_ext import *
 import datetime
 import json
-from Recipes import getIngredients
+from Recipes import getIngredients, getRecipes
 
 ingredientsDb = SqliteDatabase('ingredients.db')
 
@@ -98,6 +98,10 @@ def getShared(limit=3):
 
 
 if __name__ == "__main__":
+
+    for usr in User.select():
+        print("username: ", usr.username)
+        print(getRecipes(usr.foodList()))
     # db.create_tables([User])
     #
     # ingredients = [["Feynman", "pathIntegral"], ["Einstein", "mc2"]]
@@ -109,10 +113,10 @@ if __name__ == "__main__":
     #
     # [print(i.name, " ", str(i.lifetime)) for i in Ingredient.select()]
 
-    testUser = User.get(username="Einstein")
-
-    print (testUser.getFridge())
-    testUser.updateFridge(["chicken", "salad", "red onions", "cucumbers", "pommegranate", "salad", "avocado", "feta cheese"])
+    # testUser = User.get(username="Einstein")
+    #
+    # print (testUser.getFridge())
+    # testUser.updateFridge(["chicken", "salad", "red onions", "cucumbers", "pommegranate", "salad", "avocado", "feta cheese"])
     #testUser.removeThroughRecipe("bread Soup")
-    print (testUser.getFridge())
+    # print (testUser.getFridge())
     #print (getShared(100))
